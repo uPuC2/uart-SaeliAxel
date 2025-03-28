@@ -14,7 +14,6 @@ int main( void )
     {
         UART_getchar(0);
         UART_clrscr(0);
-
         UART_gotoxy(0,2,2);
         UART_setColor(0,YELLOW);
         UART_puts(0,"Introduce un número:");
