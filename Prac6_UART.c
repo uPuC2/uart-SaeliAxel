@@ -18,7 +18,6 @@ int main( void )
         UART_gotoxy(0,2,2);
         UART_setColor(0,YELLOW);
         UART_puts(0,"Introduce un número:");
-        
         UART_gotoxy(0,22,2);
         UART_setColor(0,GREEN);
         UART_gets(0,cad);
