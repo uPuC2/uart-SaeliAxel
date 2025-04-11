@@ -28,3 +28,4 @@ void UART_gotoxy(uint8_t com, uint8_t x, uint8_t y);
 void itoa(uint16_t number, char* str, uint8_t base);
 uint16_t atoi(char *str);
 #endif
+ 

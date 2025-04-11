@@ -156,8 +156,9 @@ char UART_getchar(uint8_t com ){
 	  break;
 
 	}
+	return 0;
 }
-#define tamano 64
+#define tamano 18
 
 void UART_gets(uint8_t com, char *str)
 {
@@ -179,15 +180,10 @@ void UART_gets(uint8_t com, char *str)
             UART_putchar(com, ' ');	//Se deja de esta forma para que deje un espacio vacio en el lugar borrado
             UART_putchar(com, '\b');
         }
-        else if (BtnPressed != 8) {
+        else if (BtnPressed != 8 && index  < tamano) {
             UART_putchar(com, BtnPressed);
             str[index] = BtnPressed;
             index++;
-        }
-
-        if (index >= tamano - 1) {
-            str[index] = '\0';
-            break;
         }
     }
 }
@@ -256,6 +252,12 @@ void itoa(uint16_t number, char *str, uint8_t base)
         *str = '\0'; //Si la cadena es null se devuelve una cadena vacia
         return;
     }
+	if (number == 0)
+    {
+        *apunt++ = '0';
+        *apunt = '\0';
+        return;
+    }
 
     // ciclo para convertir el numero en la base necesaria
     while (number)
@@ -284,12 +286,15 @@ uint16_t atoi(char *str)
 	int result = 0;
 	uint16_t idx = 0;
 	while(str[idx] != '\0')
-	{
-		result = result * 10 + (str[idx]-'0');
-		idx++;
+	{	
+		if(str[idx] >= '0' && str[idx] <= '9'){
+			result = result * 10 + (str[idx]-'0');
+			idx++;
+		}
+		else{
+			break;
+		}
 	}
 	return result;
 }
-
-
 
